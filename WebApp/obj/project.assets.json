@@ -9680,11 +9680,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\santi\\Downloads\\p2ob2\\Social.Network\\WebApp\\WebApp.csproj",
+      "projectUniqueName": "C:\\Users\\santi\\Escritorio\\ort\\2S\\P2\\obligatorio2-finished\\Social.Network\\WebApp\\WebApp.csproj",
       "projectName": "WebApp",
-      "projectPath": "C:\\Users\\santi\\Downloads\\p2ob2\\Social.Network\\WebApp\\WebApp.csproj",
+      "projectPath": "C:\\Users\\santi\\Escritorio\\ort\\2S\\P2\\obligatorio2-finished\\Social.Network\\WebApp\\WebApp.csproj",
       "packagesPath": "C:\\Users\\santi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\santi\\Downloads\\p2ob2\\Social.Network\\WebApp\\obj\\",
+      "outputPath": "C:\\Users\\santi\\Escritorio\\ort\\2S\\P2\\obligatorio2-finished\\Social.Network\\WebApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\santi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9701,8 +9701,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\santi\\Downloads\\p2ob2\\Social.Network\\Dominio\\Dominio.csproj": {
-              "projectPath": "C:\\Users\\santi\\Downloads\\p2ob2\\Social.Network\\Dominio\\Dominio.csproj"
+            "C:\\Users\\santi\\Escritorio\\ort\\2S\\P2\\obligatorio2-finished\\Social.Network\\Dominio\\Dominio.csproj": {
+              "projectPath": "C:\\Users\\santi\\Escritorio\\ort\\2S\\P2\\obligatorio2-finished\\Social.Network\\Dominio\\Dominio.csproj"
             }
           }
         }

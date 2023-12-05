@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\santi\\Downloads\\p2ob2\\Social.Network\\UI\\UI.csproj",
+      "projectUniqueName": "C:\\Users\\santi\\Escritorio\\ort\\2S\\P2\\obligatorio2-finished\\Social.Network\\UI\\UI.csproj",
       "projectName": "UI",
-      "projectPath": "C:\\Users\\santi\\Downloads\\p2ob2\\Social.Network\\UI\\UI.csproj",
+      "projectPath": "C:\\Users\\santi\\Escritorio\\ort\\2S\\P2\\obligatorio2-finished\\Social.Network\\UI\\UI.csproj",
       "packagesPath": "C:\\Users\\santi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\santi\\Downloads\\p2ob2\\Social.Network\\UI\\obj\\",
+      "outputPath": "C:\\Users\\santi\\Escritorio\\ort\\2S\\P2\\obligatorio2-finished\\Social.Network\\UI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\santi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,8 +53,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\santi\\Downloads\\p2ob2\\Social.Network\\Dominio\\Dominio.csproj": {
-              "projectPath": "C:\\Users\\santi\\Downloads\\p2ob2\\Social.Network\\Dominio\\Dominio.csproj"
+            "C:\\Users\\santi\\Escritorio\\ort\\2S\\P2\\obligatorio2-finished\\Social.Network\\Dominio\\Dominio.csproj": {
+              "projectPath": "C:\\Users\\santi\\Escritorio\\ort\\2S\\P2\\obligatorio2-finished\\Social.Network\\Dominio\\Dominio.csproj"
             }
           }
         }

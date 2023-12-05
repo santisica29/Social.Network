@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xvw1RjoGKvoxc9FHVvK/Uel/DVurYQ5WOQNA8nPxpzFFiBsYTNZupd90jnykhwQOITqETtHuJSRTZAf5QP9aqg==",
+  "dgSpecHash": "PKJKFgy1kIYhYWc+tmOIMQuibhfagC97DPbkwps7YtP0ghPVoaoOMfiCuBjwsTaD/hKvVJISy7sLkK1XtlF6nw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\santi\\Downloads\\p2ob2\\Social.Network\\WebApp\\WebApp.csproj",
+  "projectFilePath": "C:\\Users\\santi\\Escritorio\\ort\\2S\\P2\\obligatorio2-finished\\Social.Network\\WebApp\\WebApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\santi\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\santi\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
