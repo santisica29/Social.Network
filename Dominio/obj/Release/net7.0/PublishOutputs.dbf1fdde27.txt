@@ -1,0 +1,3 @@
+C:\Users\santi\Escritorio\pub\Dominio.dll
+C:\Users\santi\Escritorio\pub\Dominio.deps.json
+C:\Users\santi\Escritorio\pub\Dominio.pdb

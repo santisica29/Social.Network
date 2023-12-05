@@ -1,0 +1,119 @@
+﻿@model Dominio.Models.Post
+
+<h3 class="d-inline-block">¿Está seguro que desea banear este post?</h3>
+<a asp-action="Index">Volver a la lista de posts</a>
+<div>
+	<form method="post">
+		<input type="submit" value="Banear" class="btn btn-danger" /> 
+		<input type="checkbox" name="IsChecked" value="true" /><span>Entiendo que esta operación es riesgosa</span>
+	</form>
+	
+</div>
+<p>@ViewBag.msg</p>
+<article>
+	<div class="flex-container">
+		<span class="autor">
+			@Model.Autor.Nombre @Model.Autor.Apellido
+			<i class="fa-solid fa-circle-check"></i>
+		</span>
+		<span>@Model.Fecha</span>
+		@if (Model.EsPublico)
+		{
+			<span>Público</span>
+		}
+		else
+		{
+			<span>Privado</span>
+		}
+
+	</div>
+	<div class="flex-main-post">
+		<div>
+			<img src="/img/@Model.NombreImagen" />
+		</div>
+
+		<div>
+			<h2 class="titulo">@Model.Titulo</h2>
+			<p class="text-center">@Model.Contenido</p>
+		</div>
+	</div>
+	<div class="flex-container">
+			<span>
+				@Model.GetMeGustas().Count <i class="fa-solid fa-thumbs-up"></i>
+			</span>
+			<span>
+				@Model.GetNoMeGustas().Count <i class="fa-solid fa-thumbs-down"></i>
+			</span>
+		<span>
+			VA: @Model.CalcValorDeAceptacion()
+			<i class="fa-solid fa-heart" style="color: #fb75d6;"></i>
+		</span>
+	</div>
+</article>
+
+<style>
+	* {
+		box-sizing: border-box;
+	}
+
+	.titulo {
+		font-size: 1rem;
+		font-weight: bold;
+		text-align: center;
+		margin-bottom: 2rem;
+	}
+
+	.msg {
+		text-align: center;
+	}
+
+	.flex-container {
+		display: flex;
+		justify-content: center;
+		gap: 2rem;
+	}
+
+	img {
+		border-radius: 6px;
+		width: 100%;
+		height: 520px;
+	}
+
+	article {
+		padding: 20px;
+		border: 3px solid black;
+		border-radius: 6px;
+		margin-bottom: 80px;
+	}
+
+	.fa-circle-check {
+		color: #417cc5;
+	}
+
+	.fa-thumbs-up {
+		color: #1cd801;
+	}
+
+		.fa-thumbs-up:hover {
+			color: #16a302;
+		}
+
+	.fa-thumbs-down {
+		color: #f20909;
+	}
+
+		.fa-thumbs-down:hover {
+			color: #d60404;
+		}
+
+	.flex-main-post {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		margin: 1rem 0;
+	}
+
+		.flex-main-post div {
+			width: 50%;
+		}
+</style>

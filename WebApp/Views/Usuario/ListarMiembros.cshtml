@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Dominio.Models.Miembro>
+
+@{
+	ViewData["Title"] = "ListarMiembros";
+}
+@if (@Model == null)
+{
+	<h1>No hay miembros</h1>
+}
+else
+{
+	<h1>Miembros</h1>
+
+	@if (TempData["msg"] != null)
+	{
+		<span>@TempData["msg"]</span>
+	}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.Id)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Nombre)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Apellido)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.FechaDeNacimiento)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Email)
+				</th>
+				<th>
+					Estado
+				</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Id)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Nombre)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Apellido)
+					</td>
+					<td>
+						@item.FechaDeNacimiento.ToShortDateString()
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Email)
+					</td>
+					@if (item.EstaBloqueado)
+					{
+						<td>
+							<a asp-action="DesbloquearMiembro" asp-route-id="@item.Id">
+								<i class="fa-solid fa-unlock" style="color: #472d60;"></i>
+							</a>
+						</td>
+					}
+					else
+					{
+						<td>
+							<a asp-action="BloquearMiembro" asp-route-id="@item.Id">
+								<i class="fa-solid fa-lock-open" style="color: #5aa2f8;"></i>
+							</a>
+						</td>
+					}
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+
+<style>
+	.fa-lock-open:hover {
+		color: #418de8;
+	}
+
+	.fa-unlock {
+		color: #3a2152;
+	}
+</style>

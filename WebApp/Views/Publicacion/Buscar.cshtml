@@ -1,0 +1,131 @@
+﻿@model IEnumerable<Dominio.Models.Publicacion>
+
+<h1 class="text-center">Buscar publicación</h1>
+<p class="lead">Se buscará una publicación que contenga el texto ingresado y tenga una valoración de aceptación superior al número ingresado.</p>
+
+<form method="post" class="m-auto">
+	<input type="text" placeholder="ingrese el texto" name="criterio" />
+	<input type="number" placeholder="num de aceptacion" name="num" />
+	<input type="submit" value="Buscar" class="btn btn-outline-success" />
+</form>
+
+@if (Model != null)
+{
+	@if (Model.Count() > 0)
+	{
+		@foreach (var item in Model)
+		{
+			<section>
+				<article>
+					<h4 class="text-center">@item.GetType().Name</h4>
+					<div class="flex-container">
+						<span class="autor">
+							@item.Autor.Nombre @item.Autor.Apellido
+							<i class="fa-solid fa-circle-check"></i>
+						</span>
+						<span>@item.Fecha</span>
+						<span>ID: @item.Id</span>
+					</div>
+					<div class="flex-main-post">
+						<div>
+							<h2 class="titulo">@item.Titulo</h2>
+							<p class="text-center">@item.Contenido</p>
+						</div>
+					</div>
+					<div class="flex-container">
+						<span>
+							@item.GetMeGustas().Count
+							<a asp-action="Reaccionar" asp-controller="Publicacion" asp-route-id="@item.Id" asp-route-valor="true">
+								<i class="fa-solid fa-thumbs-up"></i>
+							</a>
+						</span>
+						<span>
+							@item.GetNoMeGustas().Count
+							<a asp-action="Reaccionar" asp-controller="Publicacion" asp-route-id="@item.Id" asp-route-valor="false">
+								<i class="fa-solid fa-thumbs-down"></i>
+							</a>
+						</span>
+						<span>VA: @item.CalcValorDeAceptacion() <i class="fa-solid fa-heart" style="color: #fb75d6;"></i></span>
+					</div>
+				</article>
+			</section>
+		}
+	}
+	else
+	{
+		<h2>No hay publicaciones con esas especificaciones</h2>
+	}
+}
+
+@if(ViewBag.msg != null)
+{
+	<p>@ViewBag.msg</p>
+}
+
+
+<style>
+	* {
+		box-sizing: border-box
+	}
+
+	.titulo {
+		font-size: 1rem;
+		font-weight: bold;
+		text-align: center;
+		margin-bottom: 2rem;
+	}
+
+	.flex-container {
+		display: flex;
+		justify-content: center;
+		gap: 2rem;
+	}
+
+	img {
+		border-radius: 6px;
+		width: 100%;
+		height: 520px;
+	}
+
+	section {
+		border: 3px solid black;
+		border-radius: 6px;
+		margin: 80px 0;
+		padding: 20px;
+	}
+
+	.fa-circle-check {
+		color: #417cc5;
+	}
+
+	.fa-thumbs-up {
+		color: #1cd801;
+	}
+
+		.fa-thumbs-up:hover {
+			color: #16a302;
+		}
+
+	.fa-thumbs-down {
+		color: #f20909;
+	}
+
+		.fa-thumbs-down:hover {
+			color: #d60404;
+		}
+
+	.comentario-titulo {
+		font-size: 1.2rem;
+	}
+
+	.flex-main-post {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		margin: 1rem 0;
+	}
+
+		.flex-main-post div {
+			width: 50%;
+		}
+</style>

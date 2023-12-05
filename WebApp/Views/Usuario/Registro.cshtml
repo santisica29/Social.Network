@@ -1,0 +1,36 @@
+﻿@model Dominio.Models.Miembro
+
+<h1>Registro</h1>
+<div class="row">
+	<div class="col-md-4">
+		<form method="POST" id="formularioRegistro">
+			<div class="form-group">
+				<label asp-for="Nombre" class="control-label">Nombre</label>
+				<input asp-for="Nombre" id="nombre" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label asp-for="Apellido" class="control-label">Apellido</label>
+				<input asp-for="Apellido" id="apellido" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label asp-for="FechaDeNacimiento" class="control-label">Fecha de nacimiento</label>
+				<input type="date" asp-for="FechaDeNacimiento" id="fechaN" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label asp-for="Email" class="control-label">Email</label>
+				<input asp-for="Email" id="email" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label asp-for="Contrasenia" class="control-label">Contraseña</label>
+				<input asp-for="Contrasenia" type="password" id="pw" class="form-control" />
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Registrar" class="btn btn-primary mt-3" />
+			</div>
+		</form>
+	</div>
+</div>
+
+<p id="error-msg">@ViewBag.msg</p>
+
+<script src="~/js/Usuario/registrarMiembro.js"></script>

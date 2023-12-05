@@ -1,0 +1,68 @@
+﻿@model List<Dominio.Models.Miembro>
+
+<h1>Enviar solicitud de amistad</h1>
+@if (TempData["msg"] != null)
+{
+	<span>@TempData["msg"]</span>
+}
+@if(Model == null)
+{
+	<h1>No hay miembros para mandar solicitudes</h1>
+}
+else
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					Nombre
+				</th>
+				<th>
+					Apellido
+				</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				@if (item.Id != ViewBag.logueado.Id)
+				{
+					<tr>
+						<td>
+							@item.Nombre
+						</td>
+						<td>
+							@item.Apellido
+						</td>
+
+						@if (ViewBag.logueado.EsAmigo(item.Id))
+						{
+							<td>Ya son amigos</td>
+						}
+						else
+						{
+							<td>
+								@Html.ActionLink("Enviar solicitud", "EnviarSolicitud", new { id = item.Id })
+							</td>
+						}
+
+					</tr>
+				}
+
+			}
+		</tbody>
+	</table>
+}
+
+<style>
+	a{
+		text-decoration:none;
+		transition: all 0.3s ease;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+</style>
+

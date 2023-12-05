@@ -1,0 +1,273 @@
+﻿@model List<Dominio.Models.Post>
+
+<h1 class="text-center">Feed</h1>
+@if (Model == null)
+{
+	<h1>No Existen Posts</h1>
+}
+else
+{
+	@if (ViewBag.rol == "Miembro")
+	{
+		<p>
+			<a class="btn btn-primary" asp-action="CrearPost">Crear post nuevo</a>
+		</p>
+	}
+
+	@if (TempData["msg"] != null)
+	{
+		<span class="msg">@TempData["msg"]</span>
+	}
+
+	@foreach (var item in Model)
+	{
+		<section class="post">
+			<article>
+				@if (ViewBag.rol.Equals("Administrador"))
+				{
+					@if (item.EstaCensurado)
+					{
+						<h3 class="text-center">Baneado</h3>
+					}
+					else
+					{
+						<p class="text-center">
+							<a class="btn btn-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+							   asp-action="BanearPost" asp-controller="Publicacion" asp-route-id="@item.Id">
+								BANEAR <i class="fa-solid fa-rectangle-xmark"></i>
+							</a>
+						</p>
+					}
+				}
+				<div class="flex-container">
+					<span class="autor">
+						@item.Autor.Nombre @item.Autor.Apellido
+						<i class="fa-solid fa-circle-check"></i>
+					</span>
+					<span>@item.Fecha</span>
+					@if (item.EsPublico)
+					{
+						<span>Público</span>
+					}
+					else
+					{
+						<span>Privado</span>
+					}
+
+				</div>
+				<div class="flex-main-post">
+					<div>
+						<img src="/img/@item.NombreImagen" />
+					</div>
+
+					<div>
+						<h2 class="titulo">@item.Titulo</h2>
+						<p class="text-center">@item.Contenido</p>
+					</div>
+				</div>
+				<div class="flex-container">
+					@if (ViewBag.rol == "Miembro" && !ViewBag.logueado.EstaBloqueado)
+					{
+						<span>
+							@item.GetMeGustas().Count
+							<a asp-action="Reaccionar" asp-controller="Publicacion" asp-route-id="@item.Id" asp-route-valor="true">
+								<i class="fa-solid fa-thumbs-up"></i>
+							</a>
+						</span>
+						<span>
+							@item.GetNoMeGustas().Count
+							<a asp-action="Reaccionar" asp-controller="Publicacion" asp-route-id="@item.Id" asp-route-valor="false">
+								<i class="fa-solid fa-thumbs-down"></i>
+							</a>
+						</span>
+					}
+					else
+					{
+						<span>
+							@item.GetMeGustas().Count <i class="fa-solid fa-thumbs-up"></i>
+						</span>
+						<span>
+							@item.GetNoMeGustas().Count <i class="fa-solid fa-thumbs-down"></i>
+						</span>
+					}
+					<span>
+						VA: @item.CalcValorDeAceptacion()
+						<i class="fa-solid fa-heart" style="color: #fb75d6;"></i>
+					</span>
+				</div>
+			</article>
+
+			@if (ViewBag.rol == "Miembro")
+			{
+				<hr />
+				@if (item.GetComentarios().Count > 0)
+				{
+					<section>
+						<p class="comentario-titulo text-center">Comentarios:</p>
+						@foreach (var c in item.GetComentarios())
+						{
+							<article>
+								<span class="autor">
+									@c.Autor.Nombre @c.Autor.Apellido
+									<i class="fa-solid fa-circle-check"></i>
+								</span>
+								<span class=" text-center">@c.Fecha</span>
+								<p><strong>@c.Titulo:</strong> @c.Contenido</p>
+								<div class="flex-container">
+									@if (!ViewBag.logueado.EstaBloqueado)
+									{
+										<span>
+											@c.GetMeGustas().Count
+											<a asp-action="Reaccionar" asp-controller="Publicacion" asp-route-id="@c.Id" asp-route-valor="true">
+												<i class="fa-solid fa-thumbs-up"></i>
+											</a>
+										</span>
+										<span>
+											@c.GetNoMeGustas().Count
+											<a asp-action="Reaccionar" asp-controller="Publicacion" asp-route-id="@c.Id" asp-route-valor="false">
+												<i class="fa-solid fa-thumbs-down"></i>
+											</a>
+										</span>
+									}
+									else
+									{
+										<span>
+											@c.GetMeGustas().Count
+
+											<i class="fa-solid fa-thumbs-up"></i>
+										</span>
+										<span>
+											@c.GetNoMeGustas().Count
+
+											<i class="fa-solid fa-thumbs-down"></i>
+										</span>
+									}
+
+									<span>VA: @c.CalcValorDeAceptacion() <i class="fa-solid fa-heart" style="color: #fb75d6;"></i></span>
+								</div>
+
+							</article>
+							<hr />
+						}
+					</section>
+				}
+				else
+				{
+					<p class="text-center">No hay comentarios</p>
+					<hr />
+				}
+				@if (!ViewBag.logueado.EstaBloqueado)
+				{
+					<section>
+						<form asp-action="Comentar" asp-controller="Publicacion">
+							<input type="hidden" value="@item.Id" name="pid" />
+							<div class="form-group">
+								<input id="Titulo" name="titulo" class="form-control" placeholder="Titulo" />
+							</div>
+							<div class="form-group mt-1">
+								<textarea id="Contenido" name="contenido" class="form-control" placeholder="Contenido..." style="resize:none;"></textarea>
+							</div>
+							<div class="form-group mt-1">
+								<input type="submit" value="Comentar" class="btn btn-secondary" />
+							</div>
+						</form>
+					</section>
+				}
+
+			}
+		</section>
+	}
+}
+<style>
+	* {
+		box-sizing: border-box;
+	}
+
+	.titulo {
+		font-size: 1rem;
+		font-weight: bold;
+		text-align: center;
+		margin-bottom: 2rem;
+	}
+
+	.msg {
+		text-align: center;
+	}
+
+	.flex-container {
+		display: flex;
+		justify-content: center;
+		gap: 2rem;
+	}
+
+	img {
+		border-radius: 6px;
+		width: 100%;
+	}
+
+	.post {
+		border: 3px solid black;
+		border-radius: 6px;
+		margin-bottom: 80px;
+	}
+
+	.comentario-titulo {
+		font-size: 1.2rem;
+	}
+
+	section {
+		padding: 20px;
+	}
+
+	.form-reaction {
+		display: inline-block;
+	}
+
+	button {
+		display: inline-block;
+		background: none;
+		color: inherit;
+		border: none;
+		padding: 0;
+		font: inherit;
+		cursor: pointer;
+		outline: inherit;
+	}
+
+	.fa-circle-check {
+		color: #417cc5;
+	}
+
+	.fa-thumbs-up {
+		color: #1cd801;
+	}
+
+		.fa-thumbs-up:hover {
+			color: #16a302;
+		}
+
+	.fa-thumbs-down {
+		color: #f20909;
+	}
+
+		.fa-thumbs-down:hover {
+			color: #d60404;
+		}
+
+	.flex-main-post {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		margin: 1rem 0;
+	}
+
+		.flex-main-post div {
+			width: 50%;
+		}
+</style>
+
+
+@section Scripts {
+
+	<script src="~/js/Publicaciones/publicaciones_scroll.js"></script>
+}

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Dominio.Models.Invitacion>
+
+@{
+	ViewData["Title"] = "VerSolicitudes";
+}
+
+@if (Model.Count() < 1)
+{
+	<h1>No tiene solicitudes pendientes</h1>
+}
+else
+{
+	<h1>Solicitudes:</h1>
+	@if (TempData["msg"] != null)
+	{
+		<span>@TempData["msg"]</span>
+	}
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					Nombre
+				</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@item.MiembroSolicitante.Nombre @item.MiembroSolicitante.Apellido
+					</td>
+					<td>
+						<a asp-action="ResponderSolicitud" asp-controller="Invitacion" asp-route-id="@item.MiembroSolicitante.Id" asp-route-tipo="aceptar">
+							<i class="fa-sharp fa-solid fa-user-check"></i>
+						</a>
+					</td>
+					<td>
+						<a asp-action="ResponderSolicitud" asp-controller="Invitacion" asp-route-id="@item.MiembroSolicitante.Id" asp-route-tipo="rechazar">
+							<i class="fa-sharp fa-solid fa-user-xmark"></i>
+						</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+
+<style>
+	.fa-user-check {
+		color: #65e835;
+	}
+
+		.fa-user-check:hover {
+			color: #47bd1c;
+		}
+
+	.fa-user-xmark {
+		color: #f51414;
+	}
+
+		.fa-user-xmark:hover {
+			color: #bf0606;
+		}
+</style>

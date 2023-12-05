@@ -1,0 +1,55 @@
+﻿@model Dominio.Models.Miembro
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalles</h1>
+
+<div>
+    <h4>@Model.Nombre @Model.Apellido</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            Fecha de Nacimiento
+        </dt>
+        <dd class="col-sm-10">
+            @Model.FechaDeNacimiento.ToShortDateString()
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            Contraseña
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contrasenia)
+        </dd>
+        <dt class="col-sm-2">
+            Estado
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.EstaBloqueado)
+            {
+                <i class="fa-solid fa-unlock" style="color: #472d60;"></i>
+            }
+            else
+            {
+                <i class="fa-solid fa-lock-open" style="color: #5aa2f8;"></i>
+            }
+        </dd>
+    </dl>
+
+</div>
+<div>
+    <a asp-action="Index" asp-controller="Home">Back to Home</a>
+</div>
